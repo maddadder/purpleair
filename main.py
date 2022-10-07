@@ -13,10 +13,8 @@ def main():
         print(pad.readings["pm2.5_aqi"])
         if pad.readings["pm2.5_aqi"] > 10:
             beep(3)
-            beep(3)
-            beep(3)
         print(pad.readings)
-        time.sleep(5)
+        time.sleep(10)
     
 if __name__ == "__main__":
     main()
