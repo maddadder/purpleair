@@ -18,6 +18,7 @@ def main():
             print(readings)
         except:
             print(readings)
+            beep(10)
         finally:
             time.sleep(60)
     

@@ -1,10 +1,11 @@
 
-#import time
-import json
+import time
+import os
 import logging
 from purpleair import PurpleAir
 from dotenv import load_dotenv
-import os
+import matplotlib.pyplot as plt
+import numpy as np
 load_dotenv()
 api_key = os.getenv("READ_KEY")
 sensor_id = str(152624)
@@ -86,21 +87,36 @@ def purpleAir():
 
     return aqi
 
-import time
-import os
+
 beep = lambda x: os.system("echo -n '\a';sleep 0.2;" * x)
 
 def main():
+    from datetime import datetime
+    from matplotlib import pyplot
+    from matplotlib.animation import FuncAnimation
+    from random import randrange
 
-    while (1==1):
-        test = int(purpleAir())
-        if test > 175:
-            beep(3)
-            beep(3)
-            beep(3)
-        print(test)
-        time.sleep(60 * 10)
+    def update(frame):
+        sample = int(purpleAir())
+        if sample > 175:
+            beep(int(sample//(175/5)))
+        print(sample)
+        x_data.append(datetime.now())
+        y_data.append(sample)
+        line.set_data(x_data, y_data)
+        figure.gca().relim()
+        figure.gca().autoscale_view()
+        return line,
+        
+    x_data, y_data = [], []
+
+    figure = pyplot.figure()
+    line, = pyplot.plot_date(x_data, y_data, '-')
+    # update every 10 minutes
+    animation = FuncAnimation(figure, update, interval=(1000 * 60 * 10))
+    pyplot.show()
     
+
 if __name__ == "__main__":
     main()
 

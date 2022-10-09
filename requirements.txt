@@ -1,2 +1,4 @@
 purpleair
 python-dotenv
+matplotlib
+numpy
