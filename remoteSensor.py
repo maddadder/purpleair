@@ -99,7 +99,7 @@ def main():
             beep(3)
             beep(3)
         print(test)
-        time.sleep(10)
+        time.sleep(60 * 10)
     
 if __name__ == "__main__":
     main()

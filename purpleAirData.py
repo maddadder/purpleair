@@ -67,7 +67,9 @@ class purpleAirData():
         """Sets a value based on the average of the A and B sensor. Assumes 'foo' and 'foo_b' in json"""
         info      = self.conditions[condition]
         readings  = self.__pairedReadings(json, condition) # Get the A and B values
-        return round(sum(readings) / len(readings), info.decimalPlaces) # Compute the average and round
+        if len(readings) != 0:
+            return round(sum(readings) / len(readings), info.decimalPlaces) # Compute the average and round
+        return 0
     
     def __singleValue(self, json, condition):
         """Sets a value based on a single key in the json object"""
@@ -82,7 +84,9 @@ class purpleAirData():
         """Computes and sets a synthetic health percentage by comparing A and B particle counters"""
         # TODO: Find a better algorithm
         readings = self.__pairedReadings(json, 'pm2_5_atm')
-        return readings[0] / readings[1]
+        if readings[1] != 0:
+            return readings[0] / readings[1]
+        return 0
 
     ### Master list of conditions that this implementation can monitor with helper object for how to process the metric
     conditions = { 
