@@ -10,13 +10,16 @@ def main():
     pad = purpleAirData("http://192.168.1.129/json", 30, conditions)
 
     while (1==1):
-        print(pad.readings["pm2.5_aqi"])
-        if pad.readings["pm2.5_aqi"] > 10:
-            beep(3)
-            beep(3)
-            beep(3)
-        print(pad.readings)
-        time.sleep(60)
+        try:
+            readings = pad.readings
+            aqi = readings["pm2.5_aqi"]
+            print(aqi)
+            beep(int(aqi // 10))
+            print(readings)
+        except:
+            print(readings)
+        finally:
+            time.sleep(60)
     
 if __name__ == "__main__":
     main()

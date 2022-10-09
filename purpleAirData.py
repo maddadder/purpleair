@@ -67,8 +67,11 @@ class purpleAirData():
         """Sets a value based on the average of the A and B sensor. Assumes 'foo' and 'foo_b' in json"""
         info      = self.conditions[condition]
         readings  = self.__pairedReadings(json, condition) # Get the A and B values
-        if len(readings) != 0:
-            return round(sum(readings) / len(readings), info.decimalPlaces) # Compute the average and round
+        numerator = sum(readings)
+        denominator = len(readings)
+        if denominator != 0:
+            result = numerator / denominator
+            return round(result, info.decimalPlaces) # Compute the average and round
         return 0
     
     def __singleValue(self, json, condition):
