@@ -94,20 +94,22 @@ def main():
     from datetime import datetime
     from matplotlib import pyplot
     from matplotlib.animation import FuncAnimation
-    from random import randrange
 
     def update(frame):
-        sample = int(purpleAir())
-        if sample > 175:
-            beep(int(sample//(175/5)))
-        print(sample)
-        x_data.append(datetime.now())
-        y_data.append(sample)
-        line.set_data(x_data, y_data)
-        figure.gca().relim()
-        figure.gca().autoscale_view()
-        return line,
-        
+        try:
+            sample = int(purpleAir())
+            if sample > 175:
+                beep(int(sample//(175/5)))
+            print(sample)
+            x_data.append(datetime.now())
+            y_data.append(sample)
+            line.set_data(x_data, y_data)
+            figure.gca().relim()
+            figure.gca().autoscale_view()
+            return line,
+        except:
+            beep(10)
+
     x_data, y_data = [], []
 
     figure = pyplot.figure()
