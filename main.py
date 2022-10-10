@@ -28,7 +28,6 @@ def main():
             figure.gca().autoscale_view()
             return line,
         except:
-            print(readings)
             beep(10)
 
         
