@@ -101,7 +101,7 @@ def main():
             if sample > 175:
                 beepCount = int(sample//(175/5))
                 beep(5)
-                os.sleep(1)
+                time.sleep(1)
                 if beepCount-5 > 0:
                     beep(beepCount-5)
             print(sample)
