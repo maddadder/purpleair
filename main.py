@@ -28,6 +28,7 @@ def main():
             figure.gca().autoscale_view()
             return line,
         except:
+            print("an error has occurred")
             beep(10)
 
         

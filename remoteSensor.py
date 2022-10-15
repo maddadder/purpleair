@@ -99,7 +99,11 @@ def main():
         try:
             sample = int(purpleAir())
             if sample > 175:
-                beep(int(sample//(175/5)))
+                beepCount = int(sample//(175/5))
+                beep(5)
+                os.sleep(1)
+                if beepCount-5 > 0:
+                    beep(beepCount-5)
             print(sample)
             x_data.append(datetime.now())
             y_data.append(sample)
@@ -108,6 +112,7 @@ def main():
             figure.gca().autoscale_view()
             return line,
         except:
+            print("an error has occurred")
             beep(10)
 
     x_data, y_data = [], []
